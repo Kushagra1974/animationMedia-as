@@ -36,10 +36,11 @@ function Home() {
                 return Number(prev) + Number(data.finalprice)
             })
             
-            setGlobalData(prev=>{
+            setGlobalData((prev)=>{
                 const updatedObject = data;
                 const newObject = { ...intialObj, objId: uuidv4() };
-                const arr = [...prev.slice(0, -1), updatedObject , newObject];
+                const fistPart = prev.slice(0, -1) 
+                const arr = [...fistPart, updatedObject , newObject];
                
                 return arr
             })

@@ -14,15 +14,14 @@ function Row({ s_No, objId, provideData, productInti, imageInti, priceInti, disc
     // console.log(category , subCategory , product , image , price , discount ,"2");
 
     const handleClick = () => {
-        if (product === "" || image === "" || price === "" || discount === "") {
+        if (product === "" && image === "" && price === "" && discount === "") {
             alert("Please enter all fields to proceed further.");
             return;
         }
-
-        if (s_No === 1 && product !== "" && image !== "" && price !== "" && discount !== "") {
-            provideData({ data: { category, subCategory, product, image, price, discount, objId, finalprice }, remove: null });
+        else if (s_No === 1 && product !== "" && image !== "" && price !== "" && discount !== "") {
+            return provideData({ data: { category, subCategory, product, image, price, discount, objId, finalprice }, remove: null });
         } else if (s_No !== 1) {
-            provideData({ data: null, remove: { objId } });
+            return provideData({ data: null, remove: { objId } });
         }
     }
 
@@ -61,10 +60,10 @@ function Row({ s_No, objId, provideData, productInti, imageInti, priceInti, disc
                         <label htmlFor="subcategory">Select Sub Category</label>
                         <select name="subcategory" id="subcategory" required onChange={(e) => { setSubCategory(e.target.value) }}>
 
-                            <option value="subcategory1">sub-Category1</option>
-                            <option value="subcategory2">sub-Category2</option>
-                            <option value="subcategory3">sub-Category3</option>
-                            <option value="subcategory4">sub-Category4</option>
+                            <option value="subcategory1">{`${category} sub-Category1`}</option>
+                            <option value="subcategory2">{`${category} sub-Category2`}</option>
+                            <option value="subcategory3">{`${category} sub-Category3`}</option>
+                            <option value="subcategory4">{`${category} sub-Category4`}</option>
                         </select>
                     </div>
                     <div className="productname" >
@@ -94,7 +93,7 @@ function Row({ s_No, objId, provideData, productInti, imageInti, priceInti, disc
                     <button onClick={() => { handleClick() }} style={{ marginRight: "50px" }}  >Add New</button>
                 </div> : <div className="btnremove">
                     <button onClick={() => { handleClick() }} style={{ backgroundColor: "orange", marginRight: "50px" }}> remove</button>
-                </div>}
+                </div>} 
 
             </div>
         </div>
